@@ -3,6 +3,9 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import HomeQr from "./qr/HomeQr";
+import HomeMultimedia from "./multimedia/HomeMultimedia";
+import UploadImages from "./multimedia/UploadImages";
+import UploadVideo from "./multimedia/UploadVideo";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -19,12 +22,13 @@ function App() {
           track.stop();
         });
         setPermissionsGranted(true);
+        console.log(permissionsGranted);
       })
       .catch((err) => {
         console.log(err);
-        setPermissionsGranted(false)
+        setPermissionsGranted(false);
       });
-  }, [permissionsGranted, setPermissionsGranted]);
+  }, [permissionsGranted]);
 
   return (
     <>
@@ -37,7 +41,10 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      {/* QR */}
       <HomeQr cameraEnabled={permissionsGranted} />
+      {/* Video */}
+      <UploadVideo />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
